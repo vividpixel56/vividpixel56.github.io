@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>b站网页动态首页-动态首页布局_关注动态与推荐流查看</title>
+<meta name="description" content="b站网页动态首页介绍：了解网页端动态首页的栏目构成、关注动态与推荐内容如何查看，以及常用入口和阅读节奏的说明。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fb7299'/%3E%3Cpath d='M18 26h28v6H18zm0 10h18v6H18z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{
+  --pink:#fb7299;
+  --pink-deep:#e25c82;
+  --blue:#00aeec;
+  --ink:#18191c;
+  --sub:#61666d;
+  --line:#e7e9ec;
+  --bg:#f6f7f8;
+  --card:#ffffff;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  color:var(--ink);background:var(--bg);line-height:1.75;
+  font-size:16px;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* Header */
+.site-header{
+  position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;gap:18px;height:64px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16px;letter-spacing:.2px;flex-shrink:0}
+.logo-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--pink),#ff9db5);display:grid;place-items:center}
+.logo-mark svg{width:20px;height:20px}
+.logo-text{color:var(--ink)}
+.nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.nav a{
+  font-size:14px;color:var(--sub);padding:7px 12px;border-radius:8px;transition:.18s;
+}
+.nav a:hover{color:var(--pink-deep);background:#fff0f4}
+.nav a.primary{background:var(--pink);color:#fff}
+.nav a.primary:hover{background:var(--pink-deep);color:#fff}
+
+/* Hero */
+.hero{padding:44px 0 34px;background:linear-gradient(180deg,#fff 0%,#fdf1f5 100%)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+.hero h1{font-size:34px;line-height:1.3;font-weight:800;letter-spacing:.3px;margin-bottom:14px}
+.hero .lead{color:var(--sub);font-size:16px;max-width:34em;margin-bottom:22px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;
+  padding:11px 20px;border-radius:10px;transition:.18s;border:1px solid transparent;
+}
+.btn-main{background:var(--pink);color:#fff}
+.btn-main:hover{background:var(--pink-deep)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--pink);color:var(--pink-deep)}
+.btn[aria-disabled="true"]{cursor:default;background:#fff;color:var(--sub);border-color:var(--line)}
+.hero-facts{display:flex;gap:26px;flex-wrap:wrap;font-size:13px;color:var(--sub)}
+.hero-facts b{display:block;font-size:19px;color:var(--ink);font-weight:800}
+.hero-art{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;
+  box-shadow:0 12px 30px rgba(251,114,153,.10);
+}
+.art-bar{display:flex;gap:6px;margin-bottom:12px}
+.art-bar i{width:9px;height:9px;border-radius:50%;background:#ffd7e2;display:block}
+.art-bar i:nth-child(2){background:#ffe6b8}
+.art-bar i:nth-child(3){background:#c8ecff}
+.art-row{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+.art-row:last-child{border-bottom:0}
+.art-ava{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#ffd0dd,#ffe9f0);flex-shrink:0}
+.art-lines{flex:1}
+.art-lines span{display:block;height:7px;border-radius:4px;background:#eef0f3}
+.art-lines span:first-child{width:62%;margin-bottom:6px;background:#f3d3dd}
+.art-lines span:last-child{width:84%}
+.art-tag{font-size:11px;color:var(--pink-deep);background:#fff0f4;padding:2px 8px;border-radius:20px}
+
+/* Sections */
+section{padding:46px 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.section-head h2{font-size:23px;font-weight:800;letter-spacing:.3px}
+.section-head p{color:var(--sub);font-size:14px;max-width:40em}
+.kicker{font-size:12px;letter-spacing:2px;color:var(--pink-deep);font-weight:700;text-transform:uppercase;display:block;margin-bottom:6px}
+
+/* Flow cards */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;transition:.2s;
+}
+.card:hover{border-color:#f5c6d4;box-shadow:0 8px 22px rgba(24,25,28,.06);transform:translateY(-2px)}
+.card h3{font-size:17px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+.card p{font-size:14.5px;color:var(--sub)}
+.ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:#fff0f4;flex-shrink:0}
+.ico svg{width:17px;height:17px;stroke:var(--pink-deep);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card.blue .ico{background:#e8f7fe}
+.card.blue .ico svg{stroke:#0096c8}
+.card.green .ico{background:#e9f8ef}
+.card.green .ico svg{stroke:#2a9d63}
+
+/* Columns */
+.cols{display:grid;grid-template-columns:1.5fr 1fr;gap:24px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.panel h3{font-size:18px;font-weight:800;margin-bottom:14px}
+.panel p{font-size:14.5px;color:var(--sub);margin-bottom:12px}
+.panel p:last-child{margin-bottom:0}
+.checklist{list-style:none;display:grid;gap:11px}
+.checklist li{display:flex;gap:10px;font-size:14.5px;color:var(--sub);line-height:1.65}
+.checklist li::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--pink);flex-shrink:0;margin-top:9px;
+}
+.checklist b{color:var(--ink);font-weight:700}
+
+/* Timeline */
+.timeline{display:grid;gap:0;border-left:2px solid #fbe0e8;margin-left:8px;padding-left:24px}
+.tl-item{position:relative;padding-bottom:26px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:"";position:absolute;left:-31px;top:7px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:3px solid var(--pink);
+}
+.tl-item h4{font-size:15.5px;font-weight:700;margin-bottom:5px}
+.tl-item p{font-size:14px;color:var(--sub)}
+
+/* Q&A */
+.qa{display:grid;gap:14px}
+.qa-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.qa-item h3{font-size:15.5px;font-weight:700;margin-bottom:7px;color:var(--ink)}
+.qa-item p{font-size:14.5px;color:var(--sub)}
+
+/* Footer */
+.site-footer{background:#fff;border-top:1px solid var(--line);padding:34px 0 28px;margin-top:14px}
+.footer-grid{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;margin-bottom:22px}
+.footer-brand{max-width:320px}
+.footer-brand .logo{margin-bottom:10px}
+.footer-brand p{font-size:13.5px;color:var(--sub)}
+.footer-links{display:flex;gap:44px;flex-wrap:wrap}
+.footer-links h4{font-size:13px;font-weight:700;margin-bottom:9px;color:var(--ink)}
+.footer-links a{display:block;font-size:13px;color:var(--sub);padding:3px 0}
+.footer-links a:hover{color:var(--pink-deep)}
+.footer-bottom{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:#9499a0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:26px}
+  .hero h1{font-size:28px}
+  .grid-3{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  .nav{margin-left:0;width:100%;order:3;padding-bottom:10px}
+  .header-inner{height:auto;flex-wrap:wrap;padding-top:12px}
+  .nav a{font-size:13px;padding:6px 10px}
+}
+@media(max-width:520px){
+  .hero{padding:30px 0 26px}
+  .hero h1{font-size:24px}
+  .hero-facts{gap:18px}
+  section{padding:34px 0}
+  .section-head h2{font-size:20px}
+  .panel{padding:20px}
+  .footer-links{gap:28px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top" aria-label="b站网页动态首页">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+          <path d="M8 12h8M8 15.5h5"></path>
+        </svg>
+      </span>
+      <span class="logo-text">b站网页动态首页</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#top" class="primary">首页</a>
+      <a href="#flow">动态构成</a>
+      <a href="#read">阅读节奏</a>
+      <a href="#entry">常用入口</a>
+      <a href="#qa">常见问题</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>b站网页动态首页</h1>
+        <p class="lead">在浏览器里打开 b站网页动态首页，最先看到的是关注与推荐的内容流。这里说明动态首页由哪些栏目组成、内容以什么顺序出现，以及怎样把它当作每天浏览的起点。</p>
+        <div class="hero-actions">
+          <a class="btn btn-main" href="#flow">
+            了解动态构成
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#entry">查看常用入口</a>
+          <a class="btn" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1" style="pointer-events:none">下载</a>
+        </div>
+        <div class="hero-facts">
+          <div><b>关注</b>已关注账号的新内容</div>
+          <div><b>推荐</b>按兴趣分发的稿件</div>
+          <div><b>动态</b>图文与转发类更新</div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-bar"><i></i><i></i><i></i></div>
+        <div class="art-row">
+          <span class="art-ava"></span>
+          <span class="art-lines"><span></span><span></span></span>
+          <span class="art-tag">关注</span>
+        </div>
+        <div class="art-row">
+          <span class="art-ava"></span>
+          <span class="art-lines"><span></span><span></span></span>
+          <span class="art-tag">动态</span>
+        </div>
+        <div class="art-row">
+          <span class="art-ava"></span>
+          <span class="art-lines"><span></span><span></span></span>
+          <span class="art-tag">推荐</span>
+        </div>
+        <div class="art-row">
+          <span class="art-ava"></span>
+          <span class="art-lines"><span></span><span></span></span>
+          <span class="art-tag">稍后看</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flow -->
+  <section id="flow">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">栏目构成</span>
+          <h2>b站网页动态首页的三块主要内容</h2>
+        </div>
+        <p>动态首页不是一个单独页面，而是由关注流、推荐流与动态条目共同拼出的浏览起点，理解这三块就能看懂整页顺序。</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span>关注动态流</h3>
+          <p>展示已关注账号最新发布的视频、专栏与动态。内容按发布时间从新到旧排列，适合按自己订阅的名单顺序查看，避免错过熟悉创作者的新作品。</p>
+        </article>
+        <article class="card blue">
+          <h3><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8z"/></svg></span>推荐内容流</h3>
+          <p>依据浏览与互动记录分发稿件，内容范围比关注流更宽。它承担发现新创作者的作用，适合在没有明确目标时逐条下滑浏览。</p>
+        </article>
+        <article class="card green">
+          <h3><span class="ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.9-.9L3 21l1.9-4.9A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg></span>动态条目</h3>
+          <p>图文、转发、收藏等短内容以卡片形式穿插。相比视频卡片，动态条目信息更轻，往往用于补充创作者的日常更新与互动内容。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Read rhythm -->
+  <section id="read" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">阅读节奏</span>
+          <h2>从打开到划走的浏览顺序</h2>
+        </div>
+        <p>把 b站网页动态首页 当成每日固定动作时，通常遵循先关注、再推荐、最后回看的顺序，下面按这个顺序展开。</p>
+      </div>
+      <div class="cols">
+        <div class="panel">
+          <h3>一条典型的浏览路径</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <h4>先看关注列表的新增</h4>
+              <p>打开页面后从最上方开始，关注流的条目按时间排列，先处理熟悉的账号更新，再决定是否进入推荐区。</p>
+            </div>
+            <div class="tl-item">
+              <h4>再翻推荐内容补充发现</h4>
+              <p>推荐流不按时间排序，适合快速扫标题与封面，遇到感兴趣的内容再点开，不必逐条看完。</p>
+            </div>
+            <div class="tl-item">
+              <h4>把未看完的内容留到稍后</h4>
+              <p>长视频或需要专注的内容可以先加入稍后再看，回到动态首页时不会被新内容淹没。</p>
+            </div>
+            <div class="tl-item">
+              <h4>最后确认是否还有遗漏</h4>
+              <p>向上回滚检查是否有被跳过的新动态，尤其是关注数量较多时，时间线容易被推荐区截断。</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>提高浏览效率的几个习惯</h3>
+          <ul class="checklist">
+            <li><span><b>控制关注数量</b>：关注太多会让关注流刷新过快，适当精简能减少漏看。</span></li>
+            <li><span><b>区分内容类型</b>：视频卡片适合整段观看，动态条目适合碎片时间浏览。</span></li>
+            <li><span><b>善用稍后再看</b>：把需要完整时间的内容先收集，避免在动态首页反复上下滚动。</span></li>
+            <li><span><b>固定浏览时段</b>：每天在同一时间查看，关注流的新增内容更集中，阅读更连贯。</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Entry -->
+  <section id="entry">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">常用入口</span>
+          <h2>动态首页上值得留意的几个位置</h2>
+        </div>
+        <p>入口决定了从 b站网页动态首页 能多快到达具体内容，熟悉位置比记住路径更实用。</p>
+      </div>
+      <div class="cols">
+        <div class="panel">
+          <h3>页面内主要入口</h3>
+          <p>顶部导航用于在动态、热门与分区之间切换；搜索框位于页头，适合已经有明确目标时直接查找稿件或创作者。</p>
+          <p>动态卡片本身是点击入口，封面与标题都可进入详情。卡片右下的操作区提供稍后再看、收藏等动作，用于把内容从动态首页转移到个人列表。</p>
+          <p>侧边区域通常放置关注列表与分区推荐，可作为从动态首页跳到具体创作者主页的快捷方式。</p>
+        </div>
+        <div class="panel">
+          <h3>按需求选择入口</h3>
+          <ul class="checklist">
+            <li><span><b>想看熟悉账号</b>：从关注流进入，或直接点侧边的关注列表。</span></li>
+            <li><span><b>想发现新内容</b>：从推荐流下滑，标题与封面是主要判断依据。</span></li>
+            <li><span><b>想找特定稿件</b>：使用页头搜索，比在动态流中回翻更快。</span></li>
+            <li><span><b>想保存待看</b>：使用卡片上的稍后再看，回到动态首页后仍可继续。</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Q&A -->
+  <section id="qa" style="background:#fff;border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">常见问题</span>
+          <h2>关于 b站网页动态首页 的几个疑问</h2>
+        </div>
+        <p>以下回答围绕页面本身的结构与浏览方式，不涉及账号设置与具体功能变更。</p>
+      </div>
+      <div class="qa">
+        <div class="qa-item">
+          <h3>动态首页和首页推荐有什么区别？</h3>
+          <p>动态首页以关注账号的更新为主线，推荐流是补充；首页推荐则更偏向按兴趣分发，关注关系不占主导。两者在内容来源的权重上不同。</p>
+        </div>
+        <div class="qa-item">
+          <h3>为什么关注流里有时看不到某个账号？</h3>
+          <p>关注流按发布时间排序，内容较多时会被后续条目推到下方；如果账号近期没有发布视频或动态，自然不会出现在时间线中。</p>
+        </div>
+        <div class="qa-item">
+          <h3>动态条目和视频卡片应该怎么看？</h3>
+          <p>视频卡片需要连续观看时间，适合留到有空时打开；动态条目篇幅短，适合在碎片时间快速浏览，两者可以按时间安排分开处理。</p>
+        </div>
+        <div class="qa-item">
+          <h3>怎样让动态首页更贴近自己的兴趣？</h3>
+          <p>保持关注列表的准确，及时取关不再关注的账号，并在浏览时对感兴趣的内容做出互动，推荐流会随之调整。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#top">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+              <path d="M8 12h8M8 15.5h5"></path>
+            </svg>
+          </span>
+          <span class="logo-text">b站网页动态首页</span>
+        </a>
+        <p>围绕 b站网页动态首页 的栏目构成、阅读顺序与常用入口展开说明，帮助把动态页用作日常浏览的固定起点。</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>页面内容</h4>
+          <a href="#flow">动态构成</a>
+          <a href="#read">阅读节奏</a>
+          <a href="#entry">常用入口</a>
+        </div>
+        <div>
+          <h4>快速回到</h4>
+          <a href="#top">页面顶部</a>
+          <a href="#qa">常见问题</a>
+          <a href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1" style="pointer-events:none">下载</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>b站网页动态首页 · 内容说明页</span>
+      <span>页面内容随平台实际界面为准</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
