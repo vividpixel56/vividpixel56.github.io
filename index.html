@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>樱花看番-樱花看番在线追番_新番旧番动漫观看入口</title>
+<meta name="description" content="樱花看番是一个围绕动漫观看与追番的首页，整理新番开播季、经典旧番回看、番剧分类检索与观看入口，帮助你看番时更快找到想看的内容。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23f7d9e3'/%3E%3Cg fill='%23e2708f'%3E%3Cellipse cx='32' cy='20' rx='7' ry='10'/%3E%3Cellipse cx='32' cy='44' rx='7' ry='10'/%3E%3Cellipse cx='20' cy='32' rx='10' ry='7'/%3E%3Cellipse cx='44' cy='32' rx='10' ry='7'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='6' fill='%23b0325a'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --sakura:#e2708f;
+    --sakura-deep:#b0325a;
+    --sakura-soft:#fbe8ee;
+    --ink:#2b2530;
+    --ink-soft:#5c5560;
+    --line:#f0dfe5;
+    --paper:#fffdfd;
+    --bg:#fdf6f8;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{max-width:100%;}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,253,253,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{display:flex;align-items:center;gap:20px;min-height:64px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.06rem;letter-spacing:.02em;color:var(--sakura-deep);white-space:nowrap;}
+  .logo .mark{width:34px;height:34px;flex:0 0 34px;}
+  nav.main{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
+  nav.main a{
+    font-size:.9rem;padding:8px 12px;border-radius:999px;color:var(--ink-soft);
+    transition:background .2s,color .2s;
+  }
+  nav.main a:hover,nav.main a:focus-visible{background:var(--sakura-soft);color:var(--sakura-deep);outline:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#fdeef3 0%,#fffdfd 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .hero .wrap{padding-top:52px;padding-bottom:52px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;}
+  .kicker{display:inline-block;font-size:.78rem;letter-spacing:.14em;color:var(--sakura-deep);background:#fff;border:1px solid var(--line);padding:4px 12px;border-radius:999px;margin-bottom:16px;}
+  h1{
+    font-size:clamp(1.9rem,4.4vw,2.9rem);
+    line-height:1.25;margin:0 0 16px;letter-spacing:.01em;font-weight:800;
+  }
+  h1 .hl{color:var(--sakura-deep);}
+  .hero p.lead{margin:0 0 24px;color:var(--ink-soft);font-size:1rem;max-width:32em;}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 22px;border-radius:999px;font-size:.94rem;font-weight:600;
+    border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s;
+  }
+  .btn.primary{background:var(--sakura-deep);color:#fff;box-shadow:0 8px 20px -10px rgba(176,50,90,.8);}
+  .btn.primary:hover{transform:translateY(-1px);box-shadow:0 12px 24px -10px rgba(176,50,90,.85);}
+  .btn.ghost{background:#fff;border-color:var(--line);color:var(--sakura-deep);}
+  .btn.ghost:hover{background:var(--sakura-soft);}
+  .btn[aria-disabled="true"]{opacity:.6;pointer-events:none;cursor:default;}
+  .hero-art{display:flex;justify-content:center;}
+  .hero-art svg{width:100%;max-width:360px;height:auto;}
+
+  /* ---------- section shells ---------- */
+  section.block{padding:52px 0;}
+  section.block.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap;}
+  .sec-head h2{font-size:1.35rem;margin:0;font-weight:800;letter-spacing:.01em;}
+  .sec-head .sub{margin:6px 0 0;color:var(--ink-soft);font-size:.92rem;}
+  .sec-head .more{font-size:.85rem;color:var(--sakura-deep);border-bottom:1px solid var(--line);padding-bottom:2px;}
+
+  /* ---------- season cards ---------- */
+  .grid{display:grid;gap:18px;}
+  .grid.c3{grid-template-columns:repeat(3,1fr);}
+  .grid.c2{grid-template-columns:repeat(2,1fr);}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;display:flex;flex-direction:column;gap:10px;
+    transition:transform .18s,box-shadow .22s,border-color .2s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 28px -20px rgba(176,50,90,.5);border-color:#ecc9d5;}
+  .card .tag{font-size:.74rem;letter-spacing:.06em;color:var(--sakura-deep);background:var(--sakura-soft);border-radius:999px;padding:3px 10px;align-self:flex-start;}
+  .card h3{margin:0;font-size:1.05rem;font-weight:700;line-height:1.45;}
+  .card p{margin:0;font-size:.9rem;color:var(--ink-soft);}
+  .card .meta{margin-top:auto;font-size:.8rem;color:#9a8f98;display:flex;gap:10px;flex-wrap:wrap;}
+
+  /* ---------- filter ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;align-items:center;}
+  .chip{
+    border:1px solid var(--line);background:#fff;color:var(--ink-soft);
+    padding:7px 16px;border-radius:999px;font-size:.86rem;cursor:pointer;transition:.18s;
+  }
+  .chip:hover{border-color:#ecc9d5;color:var(--sakura-deep);}
+  .chip.on{background:var(--sakura-deep);border-color:var(--sakura-deep);color:#fff;}
+  .search{
+    flex:1 1 220px;min-width:180px;display:flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;
+  }
+  .search svg{flex:0 0 16px;width:16px;height:16px;color:var(--sakura);}
+  .search input{border:0;outline:none;font-size:.9rem;width:100%;background:transparent;color:var(--ink);font-family:inherit;}
+  .search input::placeholder{color:#b7abb2;}
+
+  /* ---------- list rows ---------- */
+  .rows{display:grid;gap:12px;}
+  .row{
+    display:flex;align-items:center;gap:16px;
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 18px;
+  }
+  .row .no{
+    flex:0 0 34px;height:34px;border-radius:10px;background:var(--sakura-soft);color:var(--sakura-deep);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;
+  }
+  .row .txt{flex:1;min-width:0;}
+  .row .txt strong{display:block;font-size:.98rem;font-weight:700;}
+  .row .txt span{font-size:.84rem;color:var(--ink-soft);}
+  .row .pill{font-size:.76rem;color:var(--sakura-deep);background:var(--sakura-soft);padding:3px 10px;border-radius:999px;white-space:nowrap;}
+
+  /* ---------- prose ---------- */
+  .prose{max-width:44em;}
+  .prose h3{font-size:1.02rem;margin:0 0 8px;font-weight:700;}
+  .prose p{margin:0 0 16px;font-size:.94rem;color:var(--ink-soft);}
+  .prose p:last-child{margin-bottom:0;}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+
+  /* ---------- download strip ---------- */
+  .dl{
+    background:linear-gradient(120deg,#fdeef3,#fff5f8 60%,#fffdfd);
+    border:1px solid var(--line);border-radius:20px;padding:28px 30px;
+    display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  }
+  .dl h3{margin:0 0 6px;font-size:1.1rem;font-weight:800;}
+  .dl p{margin:0;font-size:.9rem;color:var(--ink-soft);max-width:38em;}
+
+  /* ---------- footer ---------- */
+  footer.site{background:#fff;border-top:1px solid var(--line);padding:36px 0 28px;margin-top:0;}
+  .foot{display:flex;gap:28px;justify-content:space-between;flex-wrap:wrap;font-size:.85rem;color:var(--ink-soft);}
+  .foot .brand{max-width:26em;}
+  .foot .brand strong{display:block;color:var(--sakura-deep);font-size:.95rem;margin-bottom:6px;}
+  .foot nav{display:flex;gap:18px;flex-wrap:wrap;}
+  .foot nav a:hover{color:var(--sakura-deep);}
+  .copy{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:.78rem;color:#9a8f98;}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;padding-top:36px;padding-bottom:36px;gap:26px;}
+    .hero-art{order:-1;}
+    .hero-art svg{max-width:250px;}
+    .grid.c3{grid-template-columns:1fr;}
+    .duo{grid-template-columns:1fr;}
+    nav.main{width:100%;margin-left:0;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;}
+    .bar{flex-wrap:wrap;padding:8px 0;}
+    section.block{padding:38px 0;}
+    .dl{padding:22px;}
+  }
+  @media (max-width:520px){
+    .grid.c2{grid-template-columns:1fr;}
+    .row .pill{display:none;}
+    h1{font-size:1.75rem;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="樱花看番 首页">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#fbe8ee"/>
+        <g fill="#e2708f">
+          <ellipse cx="32" cy="19" rx="7" ry="10"/>
+          <ellipse cx="32" cy="45" rx="7" ry="10"/>
+          <ellipse cx="19" cy="32" rx="10" ry="7"/>
+          <ellipse cx="45" cy="32" rx="10" ry="7"/>
+        </g>
+        <circle cx="32" cy="32" r="6" fill="#b0325a"/>
+      </svg>
+      <span>樱花看番</span>
+    </a>
+    <nav class="main" aria-label="主导航">
+      <a href="#season">新番开播</a>
+      <a href="#library">番剧分类</a>
+      <a href="#classic">经典回看</a>
+      <a href="#howto">看番习惯</a>
+      <a href="#download">客户端</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="kicker">动漫观看 · 追番入口</span>
+        <h1>樱花看番</h1>
+        <p class="lead">樱花看番把新番开播季、番剧分类与经典旧番放在同一个首页里。进来先看一眼当季在播什么，再按类型翻到想补的那一部，看番这件事就不必在多个页面之间来回找。</p>
+        <div class="actions">
+          <a class="btn primary" href="#season">查看新番开播</a>
+          <a class="btn ghost" href="#library">按类型找番</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 320 280" role="presentation">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fdeef3"/>
+              <stop offset="1" stop-color="#fffdfd"/>
+            </linearGradient>
+          </defs>
+          <rect x="10" y="14" width="300" height="252" rx="22" fill="url(#sky)" stroke="#f0dfe5"/>
+          <rect x="34" y="42" width="252" height="150" rx="12" fill="#fff" stroke="#f0dfe5"/>
+          <circle cx="160" cy="117" r="34" fill="#fbe8ee"/>
+          <path d="M150 100 L192 117 L150 134 Z" fill="#b0325a"/>
+          <g fill="#e2708f" opacity=".85">
+            <ellipse cx="70" cy="212" rx="9" ry="5" transform="rotate(-24 70 212)"/>
+            <ellipse cx="96" cy="230" rx="8" ry="4.6" transform="rotate(18 96 230)"/>
+            <ellipse cx="236" cy="214" rx="9" ry="5" transform="rotate(26 236 214)"/>
+            <ellipse cx="212" cy="234" rx="8" ry="4.6" transform="rotate(-14 212 234)"/>
+            <ellipse cx="160" cy="238" rx="7" ry="4" transform="rotate(8 160 238)"/>
+          </g>
+          <rect x="112" y="206" width="96" height="8" rx="4" fill="#f0dfe5"/>
+          <rect x="128" y="224" width="64" height="8" rx="4" fill="#f7e6ec"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="season">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>当季新番开播</h2>
+          <p class="sub">按开播周次排开，每周追哪几部一眼看清。</p>
+        </div>
+        <a class="more" href="#library">继续看分类</a>
+      </div>
+      <div class="grid c3">
+        <article class="card">
+          <span class="tag">周一 · 开播</span>
+          <h3>异世界与冒险新作</h3>
+          <p>本季开播的异世界题材数量不低于往年同期，主线多围绕队伍组建展开。樱花看番把它排在周一首位，方便开周就跟上进度。</p>
+          <div class="meta"><span>更新节奏：周更</span><span>适合连续追</span></div>
+        </article>
+        <article class="card">
+          <span class="tag">周三 · 开播</span>
+          <h3>日常与校园番</h3>
+          <p>节奏舒缓的一类，适合一次补两三集。看番时不必连着看，樱花看番建议按周更节奏跟着走，避免剧透。</p>
+          <div class="meta"><span>更新节奏：周更</span><span>适合碎片时间</span></div>
+        </article>
+        <article class="card">
+          <span class="tag">周六 · 开播</span>
+          <h3>热血与战斗番</h3>
+          <p>周末档通常集中本季讨论度较高的一批作品。樱花看番把周六档单独列出，追番的人可以先看这一档再补其他。</p>
+          <div class="meta"><span>更新节奏：周更</span><span>讨论度集中</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="library">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>番剧分类检索</h2>
+          <p class="sub">先选类型，再按更新状态缩小范围。</p>
+        </div>
+      </div>
+
+      <div class="filters" role="group" aria-label="番剧类型筛选">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+          </svg>
+          <input id="q" type="search" placeholder="输入番剧名或类型关键词" aria-label="搜索番剧">
+        </div>
+        <button class="chip on" data-type="all" type="button">全部</button>
+        <button class="chip" data-type="热血" type="button">热血</button>
+        <button class="chip" data-type="日常" type="button">日常</button>
+        <button class="chip" data-type="奇幻" type="button">奇幻</button>
+        <button class="chip" data-type="悬疑" type="button">悬疑</button>
+      </div>
+
+      <div class="rows" id="list">
+        <div class="row" data-type="奇幻" data-name="异世界冒险新作">
+          <div class="no">01</div>
+          <div class="txt"><strong>异世界冒险新作</strong><span>奇幻 · 当季周更 · 队伍主线</span></div>
+          <div class="pill">连载中</div>
+        </div>
+        <div class="row" data-type="日常" data-name="校园日常番">
+          <div class="no">02</div>
+          <div class="txt"><strong>校园日常番</strong><span>日常 · 当季周更 · 节奏舒缓</span></div>
+          <div class="pill">连载中</div>
+        </div>
+        <div class="row" data-type="热血" data-name="周末热血战斗番">
+          <div class="no">03</div>
+          <div class="txt"><strong>周末热血战斗番</strong><span>热血 · 当季周更 · 讨论集中</span></div>
+          <div class="pill">连载中</div>
+        </div>
+        <div class="row" data-type="悬疑" data-name="推理悬疑短篇">
+          <div class="no">04</div>
+          <div class="txt"><strong>推理悬疑短篇</strong><span>悬疑 · 已完结 · 单季可补完</span></div>
+          <div class="pill">已完结</div>
+        </div>
+        <div class="row" data-type="奇幻" data-name="经典奇幻旧番">
+          <div class="no">05</div>
+          <div class="txt"><strong>经典奇幻旧番</strong><span>奇幻 · 已完结 · 适合整季回看</span></div>
+          <div class="pill">已完结</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="classic">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>经典旧番回看</h2>
+          <p class="sub">已经完结、可以一次看完的那一类。</p>
+        </div>
+      </div>
+      <div class="duo">
+        <div class="prose">
+          <h3>整季回看，先看评价再决定</h3>
+          <p>旧番和当季新番的看番方式不同：新番要跟着周更走，旧番则适合先确认集数与完结状态，再决定是一次看完整季，还是分段补。樱花看番在分类里标注了完结状态，就是为了让这一步少绕路。</p>
+          <p>补旧番时容易被剧透，建议先只看简介和前两集，再决定是否继续。分类页里的类型标签只说明题材方向，不涉及剧情细节，可以作为初步筛选。</p>
+        </div>
+        <div class="prose">
+          <h3>回看与追更，两种节奏</h3>
+          <p>追更看的是连续性，回看看的是完整度。樱花看番把两类内容分开放置：新番开播区按周次排列，旧番区按完结状态排列，读者按自己的习惯进入对应入口即可。</p>
+          <p>如果只是想随手看一集，日常类更合适；想连续追下去，则优先选择标注连载中的作品。选择标准写在页面上，比凭印象翻找更省时间。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="howto">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>看番习惯与使用路径</h2>
+          <p class="sub">从首页到具体一部番，通常走这三步。</p>
+        </div>
+      </div>
+      <div class="grid c3">
+        <article class="card">
+          <span class="tag">第一步</span>
+          <h3>先定看哪一档</h3>
+          <p>打开樱花看番，先看当季开播区，确认这一周有哪几部在更新。如果只是想补剧，直接跳到经典回看区。</p>
+        </article>
+        <article class="card">
+          <span class="tag">第二步</span>
+          <h3>用类型缩小范围</h3>
+          <p>在分类检索里选类型，或输入关键词搜索。筛选只按题材和状态，不涉及评分，避免被单一指标左右判断。</p>
+        </article>
+        <article class="card">
+          <span class="tag">第三步</span>
+          <h3>记下进度再继续</h3>
+          <p>追更时记下看到第几集，下次从分类页回到同一部作品即可。樱花看番的列表顺序稳定，方便按原路返回。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="download">
+    <div class="wrap">
+      <div class="dl">
+        <div>
+          <h3>樱花看番客户端</h3>
+          <p>桌面与移动端均可使用，打开即进入同一套分类与新番列表。下载包当前尚未挂出，入口暂时保持关闭，正式地址就绪后替换即可。</p>
+        </div>
+        <a class="btn primary" href="#" download data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div class="brand">
+        <strong>樱花看番</strong>
+        <p style="margin:0;">樱花看番是一个围绕动漫观看与追番的首页，整理当季新番开播、番剧分类检索与经典旧番回看三类入口，内容按题材与更新状态组织，方便按自己的节奏找番。</p>
+      </div>
+      <nav aria-label="页尾导航">
+        <a href="#season">新番开播</a>
+        <a href="#library">番剧分类</a>
+        <a href="#classic">经典回看</a>
+        <a href="#howto">看番习惯</a>
+        <a href="#download">客户端</a>
+      </nav>
+    </div>
+    <div class="copy">樱花看番 · 页面内容以题材分类与更新状态为主，具体作品信息以实际页面为准。</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var chips = document.querySelectorAll('.chip');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#list .row'));
+  var q = document.getElementById('q');
+  var current = 'all';
+
+  function apply(){
+    var kw = (q.value || '').trim().toLowerCase();
+    rows.forEach(function(r){
+      var okType = current === 'all' || r.getAttribute('data-type') === current;
+      var name = (r.getAttribute('data-name') || '') + r.textContent;
+      var okKw = !kw || name.toLowerCase().indexOf(kw) > -1;
+      r.style.display = (okType && okKw) ? '' : 'none';
+    });
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(x){ x.classList.remove('on'); });
+      c.classList.add('on');
+      current = c.getAttribute('data-type');
+      apply();
+    });
+  });
+
+  q.addEventListener('input', apply);
+})();
+</script>
+
+</body>
+</html>
