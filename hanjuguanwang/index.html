@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>韩剧官网tv-韩剧官网tv在线看_韩剧tv热播剧集与追剧入口</title>
+<meta name="description" content="韩剧官网tv首页：聚合热播韩剧与经典剧集，提供剧集分类浏览、追剧清单与在线观看入口，帮助观众快速找到想看的韩剧。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1c2b'/%3E%3Cpath d='M20 24h24v5H20zM20 33h16v5H20z' fill='%23ff5a7a'/%3E%3Ccircle cx='44' cy='44' r='7' fill='none' stroke='%23ffd166' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#1b1c2b;
+  --ink-soft:#3c3f57;
+  --muted:#6b6f88;
+  --bg:#f7f6f3;
+  --card:#ffffff;
+  --rose:#ff5a7a;
+  --rose-deep:#e03e5f;
+  --gold:#ffd166;
+  --line:#e6e3dc;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+
+/* ---------- header ---------- */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,246,243,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  display:flex;align-items:center;gap:22px;
+  padding:12px 0;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:800;font-size:19px;letter-spacing:.3px;
+  color:var(--ink);white-space:nowrap;
+}
+.logo .mark{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--ink);
+  display:grid;place-items:center;flex:0 0 auto;
+}
+.nav-links{
+  display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;
+}
+.nav-links a{
+  font-size:14.5px;color:var(--ink-soft);
+  padding:7px 12px;border-radius:999px;transition:.2s;
+}
+.nav-links a:hover,.nav-links a:focus-visible{
+  background:#fff;color:var(--rose-deep);box-shadow:0 1px 0 var(--line);
+}
+.nav-cta{
+  font-size:14px;font-weight:700;color:#fff;
+  background:var(--rose);padding:9px 18px;border-radius:999px;
+  white-space:nowrap;transition:.2s;
+}
+.nav-cta:hover{background:var(--rose-deep)}
+
+/* ---------- hero ---------- */
+.hero{padding:52px 0 40px;position:relative;overflow:hidden}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;color:var(--rose-deep);
+  background:#fff0f3;border:1px solid #ffd9e1;
+  padding:5px 14px;border-radius:999px;margin-bottom:18px;
+}
+h1{
+  font-size:clamp(30px,4.6vw,50px);
+  line-height:1.22;font-weight:900;letter-spacing:-.5px;
+  margin-bottom:18px;
+}
+h1 .accent{color:var(--rose-deep)}
+.hero p.lead{
+  font-size:16.5px;color:var(--ink-soft);max-width:34em;margin-bottom:26px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:15px;font-weight:700;border-radius:999px;
+  padding:12px 24px;transition:.2s;border:1px solid transparent;
+}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:#000;transform:translateY(-1px)}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--rose);color:var(--rose-deep)}
+.btn[aria-disabled="true"]{pointer-events:none;opacity:.92}
+.hero-stats{display:flex;gap:30px;flex-wrap:wrap}
+.hero-stats div strong{display:block;font-size:22px;font-weight:900;color:var(--ink)}
+.hero-stats div span{font-size:13px;color:var(--muted)}
+.hero-art{
+  position:relative;background:#fff;border:1px solid var(--line);
+  border-radius:24px;padding:22px;box-shadow:0 24px 60px -38px rgba(27,28,43,.5);
+}
+.hero-art .screen{
+  border-radius:16px;overflow:hidden;background:var(--ink);
+  aspect-ratio:16/10;display:grid;place-items:center;
+}
+.hero-art figcaption{
+  font-size:12.5px;color:var(--muted);margin-top:12px;text-align:center;
+}
+
+/* ---------- section base ---------- */
+section{padding:46px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(21px,2.6vw,27px);font-weight:900;letter-spacing:-.3px}
+.sec-head p{font-size:14px;color:var(--muted);max-width:36em}
+.kicker{font-size:12.5px;font-weight:800;letter-spacing:1.5px;color:var(--rose-deep);text-transform:uppercase;margin-bottom:6px}
+
+/* ---------- filters ---------- */
+.filters{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px;margin-bottom:24px;
+}
+.chip{
+  font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  border:1px solid var(--line);background:var(--bg);
+  padding:6px 15px;border-radius:999px;cursor:pointer;transition:.18s;
+}
+.chip:hover{border-color:var(--rose)}
+.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.search-box{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 14px}
+.search-box input{
+  border:0;background:transparent;outline:none;font-size:14px;width:150px;
+  color:var(--ink);font-family:inherit;
+}
+.search-box button{
+  border:0;background:var(--rose);color:#fff;font-weight:700;
+  font-size:13px;padding:7px 15px;border-radius:999px;cursor:pointer;font-family:inherit;
+}
+
+/* ---------- drama cards ---------- */
+.grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.drama{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;transition:.22s;
+}
+.drama:hover{transform:translateY(-3px);box-shadow:0 20px 40px -30px rgba(27,28,43,.55)}
+.poster{
+  aspect-ratio:16/10;background:linear-gradient(140deg,#22243a,#3a3d5c);
+  display:grid;place-items:center;position:relative;
+}
+.poster .num{
+  position:absolute;top:10px;left:12px;font-size:12px;font-weight:800;
+  color:var(--ink);background:var(--gold);padding:2px 9px;border-radius:6px;
+}
+.poster .tag{
+  position:absolute;bottom:10px;right:12px;font-size:11.5px;font-weight:700;
+  color:#fff;background:rgba(255,90,122,.9);padding:2px 10px;border-radius:6px;
+}
+.drama-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.drama-body h3{font-size:17px;font-weight:800;line-height:1.4}
+.drama-body p{font-size:13.5px;color:var(--muted);line-height:1.7}
+.meta{display:flex;gap:10px;font-size:12px;color:var(--rose-deep);font-weight:700;flex-wrap:wrap}
+.drama-body .more{
+  margin-top:auto;font-size:13.5px;font-weight:700;color:var(--ink);
+  border-top:1px solid var(--line);padding-top:10px;display:flex;justify-content:space-between;
+}
+.drama-body .more span{color:var(--muted);font-weight:500}
+
+/* ---------- guide split ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.prose h2{font-size:clamp(21px,2.6vw,26px);font-weight:900;margin-bottom:16px;letter-spacing:-.3px}
+.prose p{font-size:15.5px;color:var(--ink-soft);margin-bottom:14px;max-width:38em}
+.prose p strong{color:var(--ink)}
+.steps{list-style:none;display:grid;gap:14px;margin-top:6px}
+.steps li{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:16px 18px 16px 56px;position:relative;
+}
+.steps li::before{
+  content:counter(step);counter-increment:step;
+  position:absolute;left:16px;top:16px;width:26px;height:26px;
+  background:var(--ink);color:#fff;border-radius:8px;
+  display:grid;place-items:center;font-size:13px;font-weight:800;
+}
+.steps{counter-reset:step}
+.steps li h3{font-size:15px;font-weight:800;margin-bottom:4px}
+.steps li p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.65}
+
+/* ---------- list rows ---------- */
+.rows{display:grid;gap:0;border-top:1px solid var(--line)}
+.row{
+  display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;
+  padding:18px 4px;border-bottom:1px solid var(--line);
+}
+.row .idx{font-size:19px;font-weight:900;color:#c9c5bc;font-variant-numeric:tabular-nums}
+.row h3{font-size:15.5px;font-weight:800;margin-bottom:3px}
+.row p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.row .pill{font-size:12px;font-weight:700;color:var(--rose-deep);background:#fff0f3;padding:4px 12px;border-radius:999px;white-space:nowrap}
+
+/* ---------- faq ---------- */
+.faq{display:grid;gap:12px}
+.faq details{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:16px 20px;
+}
+.faq summary{
+  font-size:15px;font-weight:800;cursor:pointer;list-style:none;
+  display:flex;justify-content:space-between;gap:16px;align-items:center;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:18px;color:var(--rose-deep);font-weight:700}
+.faq details[open] summary::after{content:"–"}
+.faq details p{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.75}
+
+/* ---------- footer ---------- */
+footer.site{
+  background:var(--ink);color:#c8c9d6;margin-top:30px;padding:42px 0 26px;
+}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:28px}
+footer .brand{
+  display:flex;align-items:center;gap:10px;font-size:17px;font-weight:800;color:#fff;margin-bottom:12px;
+}
+footer p{font-size:13.5px;line-height:1.8;color:#9fa1b5;max-width:30em}
+footer h4{font-size:13px;color:#fff;font-weight:800;margin-bottom:12px;letter-spacing:.5px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer ul a{font-size:13.5px;color:#9fa1b5;transition:.18s}
+footer ul a:hover{color:var(--gold)}
+.foot-bottom{
+  border-top:1px solid #303247;padding-top:18px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:12.5px;color:#7c7e94;
+}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero-art{order:-1}
+  .grid-cards{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr;gap:28px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-inner{flex-wrap:wrap;gap:10px}
+  .nav-links{order:3;width:100%;margin-left:0;gap:2px}
+  .nav-links a{padding:6px 10px;font-size:13.5px}
+  .nav-cta{margin-left:auto}
+  .hero{padding:32px 0 26px}
+  .hero-stats{gap:20px}
+  .grid-cards{grid-template-columns:1fr}
+  .row{grid-template-columns:38px 1fr;gap:12px}
+  .row .pill{display:none}
+  .search-box{margin-left:0;width:100%}
+  .search-box input{width:100%}
+  .foot-grid{grid-template-columns:1fr}
+  section{padding:34px 0}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top" aria-label="韩剧官网tv 首页">
+      <span class="mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="6" width="18" height="3.4" rx="1" fill="#ff5a7a"/>
+          <rect x="3" y="12" width="12" height="3.4" rx="1" fill="#ffd166"/>
+          <circle cx="17.5" cy="17.5" r="3.6" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </span>
+      韩剧官网tv
+    </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#hot">热播剧集</a>
+      <a href="#pick">追剧清单</a>
+      <a href="#how">观看路径</a>
+      <a href="#rank">口碑排行</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a class="nav-cta" href="#hot">开始追剧</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5" fill="#ff5a7a"/></svg>
+          剧集聚合 · 追剧入口
+        </span>
+        <h1>韩剧官网tv</h1>
+        <p class="lead">韩剧官网tv 把热播韩剧、经典剧集与追剧清单收在一处。按题材、年份和口碑筛选，找到想看的剧，再沿着观看路径直接进入剧集页。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#hot">
+            浏览热播剧集
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#how">了解观看路径</a>
+          <a class="btn btn-ghost" href="#" download data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载追剧清单</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>6 类</strong><span>题材分类</span></div>
+          <div><strong>12 部</strong><span>首页精选剧集</span></div>
+          <div><strong>3 步</strong><span>找到并观看</span></div>
+        </div>
+      </div>
+      <figure class="hero-art">
+        <div class="screen">
+          <svg width="88%" viewBox="0 0 320 200" role="img" aria-label="韩剧官网tv 剧集浏览界面示意">
+            <rect x="0" y="0" width="320" height="200" rx="10" fill="#22243a"/>
+            <rect x="16" y="16" width="120" height="9" rx="4.5" fill="#ff5a7a"/>
+            <rect x="16" y="34" width="86" height="7" rx="3.5" fill="#4a4d6b"/>
+            <rect x="16" y="56" width="88" height="56" rx="7" fill="#3a3d5c"/>
+            <rect x="112" y="56" width="88" height="56" rx="7" fill="#3a3d5c"/>
+            <rect x="208" y="56" width="88" height="56" rx="7" fill="#3a3d5c"/>
+            <circle cx="60" cy="84" r="11" fill="#ffd166"/>
+            <circle cx="156" cy="84" r="11" fill="#ff5a7a"/>
+            <circle cx="252" cy="84" r="11" fill="#ffd166"/>
+            <rect x="16" y="126" width="280" height="7" rx="3.5" fill="#4a4d6b"/>
+            <rect x="16" y="142" width="210" height="7" rx="3.5" fill="#3a3d5c"/>
+            <rect x="16" y="164" width="76" height="20" rx="10" fill="#ff5a7a"/>
+            <rect x="102" y="164" width="76" height="20" rx="10" fill="#3a3d5c"/>
+          </svg>
+        </div>
+        <figcaption>韩剧官网tv 剧集浏览与筛选界面示意</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- HOT + FILTER -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="kicker">Hot Picks</div>
+          <h2>热播韩剧精选</h2>
+        </div>
+        <p>首页展示的剧集按题材归类，卡片标注类型、播出年份与一句话看点，方便在韩剧官网tv 内快速判断是否合口味。</p>
+      </div>
+
+      <div class="filters" role="group" aria-label="剧集筛选">
+        <button class="chip active" data-cat="all" type="button">全部</button>
+        <button class="chip" data-cat="爱情" type="button">爱情</button>
+        <button class="chip" data-cat="悬疑" type="button">悬疑</button>
+        <button class="chip" data-cat="职场" type="button">职场</button>
+        <button class="chip" data-cat="家庭" type="button">家庭</button>
+        <button class="chip" data-cat="古装" type="button">古装</button>
+        <div class="search-box">
+          <input id="q" type="search" placeholder="搜索剧名或题材" aria-label="搜索剧集">
+          <button id="qBtn" type="button">搜索</button>
+        </div>
+      </div>
+
+      <div class="grid-cards" id="cards">
+
+        <article class="drama" data-cat="爱情" data-key="春天的旋律 爱情 都市">
+          <div class="poster">
+            <span class="num">01</span>
+            <svg width="86" viewBox="0 0 120 76" aria-hidden="true"><circle cx="44" cy="38" r="20" fill="#ff5a7a" opacity=".85"/><circle cx="76" cy="38" r="20" fill="#ffd166" opacity=".8"/></svg>
+            <span class="tag">爱情</span>
+          </div>
+          <div class="drama-body">
+            <h3>春天的旋律</h3>
+            <div class="meta"><span>都市爱情</span><span>16 集</span></div>
+            <p>两位旧识在唱片行重逢，用一张张专辑串起错过多年的心事。</p>
+            <div class="more"><a href="#hot">查看剧集</a><span>口碑 8.6</span></div>
+          </div>
+        </article>
+
+        <article class="drama" data-cat="悬疑" data-key="夜行追踪 悬疑 刑侦">
+          <div class="poster">
+            <span class="num">02</span>
+            <svg width="86" viewBox="0 0 120 76" aria-hidden="true"><path d="M30 56 L52 20 L74 56 Z" fill="#4a4d6b"/><circle cx="84" cy="28" r="8" fill="#ffd166"/></svg>
+            <span class="tag">悬疑</span>
+          </div>
+          <div class="drama-body">
+            <h3>夜行追踪</h3>
+            <div class="meta"><span>刑侦悬疑</span><span>12 集</span></div>
+            <p>一桩旧案重启，刑警与记者在同一条线索上反复交错。</p>
+            <div class="more"><a href="#hot">查看剧集</a><span>口碑 8.9</span></div>
+          </div>
+        </article>
+
+        <article class="drama" data-cat="职场" data-key="提案之外 职场 都市">
+          <div class="poster">
+            <span class="num">03</span>
+            <svg width="86" viewBox="0 0 120 76" aria-hidden="true"><rect x="22" y="22" width="46" height="34" rx="5" fill="#3a3d5c"/><rect x="42" y="34" width="56" height="34" rx="5" fill="#ff5a7a" opacity=".8"/></svg>
+            <span class="tag">职场</span>
+          </div>
+          <div class="drama-body">
+            <h3>提案之外</h3>
+            <div class="meta"><span>职场群像</span><span>16 集</span></div>
+            <p>广告组加班到深夜，方案之外的人情与选择才是真正的难题。</p>
+            <div class="more"><a href="#hot">查看剧集</a><span>口碑 8.3</span></div>
+          </div>
+        </article>
+
+        <article class="drama" data-cat="家庭" data-key="我们的餐桌 家庭 治愈">
+          <div class="poster">
+            <span class="num">04</span>
+            <svg width="86" viewBox="0 0 120 76" aria-hidden="true"><ellipse cx="60" cy="52" rx="34" ry="12" fill="#4a4d6b"/><circle cx="46" cy="40" r="10" fill="#ffd166"/><circle cx="74" cy="40" r="10" fill="#ff5a7a" opacity=".85"/></svg>
+            <span class="tag">家庭</span>
+          </div>
+          <div class="drama-body">
+            <h3>我们的餐桌</h3>
+            <div class="meta"><span>家庭治愈</span><span>20 集</span></div>
+            <p>三代人围着一张旧餐桌，把说不出口的话都放进了一日三餐。</p>
+            <div class="more"><a href="#hot">查看剧集</a><span>口碑 8.7</span></div>
+          </div>
+        </article>
+
+        <article class="drama" data-cat="古装" data-key="月下长街 古装 权谋">
+          <div class="poster">
+            <span class="num">05</span>
+            <svg width="86" viewBox="0 0 120 76" aria-hidden="true"><path d="M20 58 Q40 26 60 58 Q80 26 100 58" stroke="#ffd166" stroke-width="4" fill="none"/><circle cx="60" cy="24" r="7" fill="#ff5a7a"/></svg>
+            <span class="tag">古装</span>
+          </div>
+          <div class="drama-body">
+            <h3>月下长街</h3>
+            <div class="meta"><span>古装权谋</span><span>18 集</span></div>
+            <p>一盏灯、一条长街，少年人在朝堂与市井之间进退两难。</p>
+            <div class="more"><a href="#hot">查看剧集</a><span>口碑 8.4</span></div>
+          </div>
+        </article>
+
+        <article class="drama" data-cat="爱情" data-key="夏日信笺 爱情 青春">
+          <div class="poster">
+            <span class="num">06</span>
+            <svg width="86" viewBox="0 0 120 76" aria-hidden="true"><rect x="28" y="24" width="64" height="40" rx="5" fill="#3a3d5c"/><path d="M28 26 L60 48 L92 26" stroke="#ff5a7a" stroke-width="4" fill="none"/></svg>
+            <span class="tag">爱情</span>
+          </div>
+          <div class="drama-body">
+            <h3>夏日信笺</h3>
+            <div class="meta"><span>青春爱情</span><span>12 集</span></div>
+            <p>一封没有寄出的信，让两个高中同学在十年后重新坐下聊天。</p>
+            <div class="more"><a href="#hot">查看剧集</a><span>口碑 8.2</span></div>
+          </div>
+        </article>
+
+      </div>
+      <p id="empty" hidden style="margin-top:18px;color:var(--muted);font-size:14px">没有匹配的剧集，换个题材或关键词试试。</p>
+    </div>
+  </section>
+
+  <!-- PICK LIST -->
+  <section id="pick" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="kicker">Watchlist</div>
+          <h2>追剧清单：按场景选剧</h2>
+        </div>
+        <p>同一批剧集，换一种进入方式。韩剧官网tv 按观看场景整理清单，减少在列表里反复翻找的时间。</p>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="idx">01</span>
+          <div>
+            <h3>通勤路上想快点看完</h3>
+            <p>优先选择 12 集左右的短剧，单集节奏紧凑，一周内可连贯看完。</p>
+          </div>
+          <span class="pill">短剧优先</span>
+        </div>
+        <div class="row">
+          <span class="idx">02</span>
+          <div>
+            <h3>周末想一次看个够</h3>
+            <p>20 集家庭剧和 18 集古装剧情节铺陈更充分，适合连续观看。</p>
+          </div>
+          <span class="pill">长线连看</span>
+        </div>
+        <div class="row">
+          <span class="idx">03</span>
+          <div>
+            <h3>只想轻松下饭</h3>
+            <p>都市爱情与家庭治愈题材冲突较轻，适合边吃边看。</p>
+          </div>
+          <span class="pill">轻松向</span>
+        </div>
+        <div class="row">
+          <span class="idx">04</span>
+          <div>
+            <h3>想跟着线索猜结局</h3>
+            <p>刑侦悬疑剧每集留钩子，适合和朋友一起讨论推理。</p>
+          </div>
+          <span class="pill">烧脑向</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="how">
+    <div class="wrap split">
+      <div class="prose">
+        <div class="kicker">How It Works</div>
+        <h2>在韩剧官网tv 找到想看的剧</h2>
+        <p>韩剧官网tv 的首页结构围绕“找剧—判断—进入”设计。<strong>找剧</strong>靠题材筛选与剧名搜索；<strong>判断</strong>靠卡片上的类型、集数和一句话看点；<strong>进入</strong>则通过卡片内的剧集入口完成。三段之间不跳转无关页面，减少来回切换。</p>
+        <p>剧集信息以条目形式呈现，包含题材、集数与简短剧情描述。口碑数值用于横向比较同题材剧集的欢迎程度，并非评分榜单，具体观看体验仍需以剧集页内容为准。</p>
+        <p>若不确定看什么，可先看下方的口碑排行，再回到筛选区按题材缩小范围。韩剧官网tv 的清单与排行会随首页更新调整，条目以当前页面展示为准。</p>
+        <a class="btn btn-primary" href="#rank" style="margin-top:6px">查看口碑排行</a>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>选题材或搜剧名</h3>
+          <p>用顶部筛选按钮锁定爱情、悬疑、职场等方向，或在搜索框输入剧名关键词。</p>
+        </li>
+        <li>
+          <h3>看卡片信息做判断</h3>
+          <p>每张卡片给出类型、集数、一句话剧情与口碑数值，足够决定是否加入追剧清单。</p>
+        </li>
+        <li>
+          <h3>进入剧集页观看</h3>
+          <p>点击卡片内“查看剧集”进入对应剧集页，继续查看分集信息与观看入口。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- RANK -->
+  <section id="rank" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="kicker">Ranking</div>
+          <h2>口碑排行</h2>
+        </div>
+        <p>按首页卡片展示的口碑数值排序，仅反映本页所选剧集之间的相对位置，不代表全站或行业评价。</p>
+      </div>
+      <div class="rows">
+        <div class="row"><span class="idx">1</span><div><h3>夜行追踪</h3><p>刑侦悬疑 · 12 集 · 线索密度高，适合连续追看。</p></div><span class="pill">8.9</span></div>
+        <div class="row"><span class="idx">2</span><div><h3>我们的餐桌</h3><p>家庭治愈 · 20 集 · 群像细腻，情绪落点稳定。</p></div><span class="pill">8.7</span></div>
+        <div class="row"><span class="idx">3</span><div><h3>春天的旋律</h3><p>都市爱情 · 16 集 · 音乐元素与情感线结合自然。</p></div><span class="pill">8.6</span></div>
+        <div class="row"><span class="idx">4</span><div><h3>月下长街</h3><p>古装权谋 · 18 集 · 市井与朝堂双线并行。</p></div><span class="pill">8.4</span></div>
+        <div class="row"><span class="idx">5</span><div><h3>提案之外</h3><p>职场群像 · 16 集 · 聚焦团队协作与个人选择。</p></div><span class="pill">8.3</span></div>
+        <div class="row"><span class="idx">6</span><div><h3>夏日信笺</h3><p>青春爱情 · 12 集 · 节奏轻快，适合下饭观看。</p></div><span class="pill">8.2</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="kicker">FAQ</div>
+          <h2>常见问题</h2>
+        </div>
+        <p>关于韩剧官网tv 的页面内容与使用方式，集中说明如下。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>韩剧官网tv 是什么？</summary>
+          <p>韩剧官网tv 是一个韩剧剧集聚合首页，集中展示热播与经典剧集的条目信息，提供题材筛选、剧名搜索、追剧清单与口碑排行，帮助观众更快决定看什么。</p>
+        </details>
+        <details>
+          <summary>首页的剧集信息包含哪些内容？</summary>
+          <p>每张剧集卡片包含剧名、题材分类、集数、一句话剧情看点与口碑数值，点击卡片内的剧集入口可进入对应剧集页继续查看。</p>
+        </details>
+        <details>
+          <summary>搜索和筛选怎么用？</summary>
+          <p>筛选按钮按题材过滤卡片，搜索框支持剧名与题材关键词匹配，两者可叠加使用；没有匹配结果时会给出提示。</p>
+        </details>
+        <details>
+          <summary>追剧清单可以下载吗？</summary>
+          <p>清单下载入口位于首屏操作区，当前为占位状态，待正式文件地址替换后即可使用；在此之前可通过页面浏览与筛选完成选择。</p>
+        </details>
+        <details>
+          <summary>口碑数值代表什么？</summary>
+          <p>口碑数值用于同题材剧集之间的相对比较，反映本页所选剧集的欢迎程度，不等同于专业评分，也不构成对剧集质量的绝对判断。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="3.4" rx="1" fill="#ff5a7a"/>
+            <rect x="3" y="12" width="12" height="3.4" rx="1" fill="#ffd166"/>
+            <circle cx="17.5" cy="17.5" r="3.6" stroke="#fff" stroke-width="2"/>
+          </svg>
+          韩剧官网tv
+        </div>
+        <p>韩剧官网tv 聚合热播与经典韩剧条目，按题材、场景与口碑组织内容，为观众提供清晰的找剧与追剧入口。</p>
+      </div>
+      <div>
+        <h4>页面导航</h4>
+        <ul>
+          <li><a href="#hot">热播剧集</a></li>
+          <li><a href="#pick">追剧清单</a></li>
+          <li><a href="#how">观看路径</a></li>
+          <li><a href="#rank">口碑排行</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>题材分类</h4>
+        <ul>
+          <li><a href="#hot">爱情剧集</a></li>
+          <li><a href="#hot">悬疑剧集</a></li>
+          <li><a href="#hot">职场剧集</a></li>
+          <li><a href="#hot">家庭剧集</a></li>
+          <li><a href="#hot">古装剧集</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024 韩剧官网tv · 剧集信息以页面展示为准</span>
+      <span>韩剧官网tv 首页 · 追剧从选剧开始</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.drama'));
+  var q = document.getElementById('q');
+  var qBtn = document.getElementById('qBtn');
+  var empty = document.getElementById('empty');
+  var currentCat = 'all';
+
+  function apply(){
+    var kw = (q.value || '').trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(card){
+      var catOk = currentCat === 'all' || card.getAttribute('data-cat') === currentCat;
+      var key = (card.getAttribute('data-key') || '').toLowerCase();
+      var text = card.textContent.toLowerCase();
+      var kwOk = !kw || key.indexOf(kw) > -1 || text.indexOf(kw) > -1;
+      var show = catOk && kwOk;
+      card.style.display = show ? '' : 'none';
+      if(show) shown++;
+    });
+    empty.hidden = shown > 0;
+  }
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      currentCat = chip.getAttribute('data-cat');
+      apply();
+    });
+  });
+
+  qBtn.addEventListener('click', apply);
+  q.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ apply(); } });
+  q.addEventListener('input', apply);
+})();
+</script>
+</body>
+                                                 </html>
